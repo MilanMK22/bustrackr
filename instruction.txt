@@ -1,0 +1,28 @@
+Project: Metlink Bus Stop Information Retrieval Tool
+Objective:
+Create a web application that allows users to retrieve information about the next coming buses for any bus stop in Wellington using the Metlink API.
+Understanding the Metlink API: Begin by reading and understanding the Metlink API documentation. During this phase, you can create a new GitLab repository for your project to start tracking your code changes
+
+Setting Up Development Environment: As you set up your development environment with React and, if applicable, Node.js with Express.js, initialize a new Git repository locally and push your initial codebase to GitLab. This establishes a version-controlled environment for your project.
+
+
+Backend Implementation (optional): If you're including a backend with Node.js and Express.js, continue developing and committing your code changes to GitLab as you set up routes and integrate with the Metlink API.
+
+
+Frontend Implementation: Similarly, as you design and implement the frontend user interface using React, commit your changes regularly to GitLab. This ensures that your code changes are tracked, and you have a backup of your progress.
+
+
+Integrating with Metlink API: Throughout the process of integrating with the Metlink API, commit your code changes to GitLab after each significant milestone or feature implementation. This helps maintain a clear history of your project's development.
+
+Displaying Data: As you design and implement the display of bus stop information in the frontend, continue committing your changes to GitLab. Consider branching off for specific features or bug fixes to keep your development organized.
+
+Testing and Refinement: During testing and refinement, utilize GitLab's issue tracking feature to log any bugs or enhancements. Create branches for each issue and merge them back into the main branch once resolved. Commit your changes and reference the related issues in your commit messages for traceability.
+
+Deployment: When you're ready to deploy your application, use GitLab's CI/CD pipelines to automate the deployment process. Set up pipelines to build and deploy your frontend and backend (if applicable) to your hosting platform directly from your GitLab repository.
+
+
+
+
+Documentation: As you finalize your project documentation, commit any updates to GitLab. You can use GitLab's Wiki feature to create detailed documentation pages directly within your repository for easy access.
+
+Maintenance: For ongoing maintenance, continue using GitLab for version control, issue tracking, and collaboration. Regularly update your repository with any code changes, and leverage GitLab's merge request feature for code reviews and collaboration with others.
