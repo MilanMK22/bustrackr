@@ -15,12 +15,16 @@ router.get('/bus-stop/:stopId', async (req, res) => {
       }
     });
 
+         // Extract the departures array from the response data
     const departures = response.data.departures;
 
-    // Get the first 5 predictions
-    const firstFivePredictions = departures.slice(0, 5);
+    // Extract the first 5 predictions and format the data
+    const firstFivePredictions = departures.slice(0, 5).map(prediction => ({
+      busNumber: prediction.service_id,
+      estimatedArrivalTime: prediction.arrival.expected
+    }));
 
-    // Send response back to client
+    // Send response back to client with the first 5 predictions
     res.json(firstFivePredictions);
   } catch (error) {
     console.error('Error fetching bus stop data:', error);
