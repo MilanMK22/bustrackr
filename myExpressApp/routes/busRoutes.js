@@ -15,7 +15,10 @@ router.get('/bus-stop/:stopId', async (req, res) => {
       }
     });
 
-    const firstFivePredictions = response.data.slice(0, 5);
+    const departures = response.data.departures;
+
+    // Get the first 5 predictions
+    const firstFivePredictions = departures.slice(0, 5);
 
     // Send response back to client
     res.json(firstFivePredictions);
