@@ -1,21 +1,19 @@
 import axios from "axios";
 import { ChangeEvent, useState } from "react";
+import { fetchBusStops } from "../services/busStopService";
 
-function SearchBar() {
+interface SearchBarProps {
+  onSearch: (searchValue: string) => Promise<void>;
+}
+
+function SearchBar({ onSearch }: SearchBarProps) {
   const [searchValue, setSearchValue] = useState("");
 
   const handleClick = async () => {
-    try {
-      // Make an HTTP GET request to your server's endpoint with the search value
-      const response = await axios.get<any[]>(
-        `http://localhost:3000/api/bus-stop/${searchValue}`
-      );
-
-      console.log(response.data)
-    } catch (error) {
-      console.error("Error retrieving bus stop information:", error);
-    }
+    await onSearch(searchValue);
   };
+
+
   const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
     setSearchValue(event.target.value);
   };
