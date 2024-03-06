@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import SearchBar from "./components/SearchBar";
 import { fetchBusStops } from "./services/busStopService";
 import ListGroup from "./components/ListGroup";
@@ -18,8 +18,8 @@ function App() {
   const handleSearch = async (searchValue: string) => {
     try {
       const response: any = await fetchBusStops(searchValue); // Explicitly declare response type as any
-      if (response && response.data) { // Check if response and response.data exist
-        setBusStops(response.data);
+      if (response) { // Check if response and response.data exist
+        setBusStops(response);
       } else {
         console.error("Invalid response format:", response);
       }
@@ -27,8 +27,6 @@ function App() {
       console.error("Error retrieving bus stop information:", error);
     }
   };
-
-
 
   return (
     <div>
