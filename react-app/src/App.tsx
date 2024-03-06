@@ -33,9 +33,12 @@ function App() {
   }, [busStops]); // Log busStops whenever it changes
 
   return (
-    <div>
-      <SearchBar onSearch={handleSearch}></SearchBar>
-      <ListGroup key={key} items={busStops} heading="buses"></ListGroup>
+    <div className="d-flex justify-content-center align-items-center vh-150">
+      <div>
+        <h1 className="text-center mb-4">BusTrackr</h1>
+        <SearchBar onSearch={handleSearch}></SearchBar>
+        <ListGroup key={key} items={busStops} heading="buses"></ListGroup>
+      </div>
     </div>
   );
 }

@@ -13,19 +13,18 @@ function SearchBar({ onSearch }: SearchBarProps) {
     await onSearch(searchValue);
   };
 
-
   const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
     setSearchValue(event.target.value);
   };
 
   return (
-    <div className="row">
-      <div className="col-lg-6">
+    <div className="row justify-content-center mb-4">
+      <div className="col-lg-10">
         <div className="input-group">
           <input
             type="text"
             className="form-control"
-            placeholder="Search for..."
+            placeholder="Bus Stop Number..."
             value={searchValue}
             onChange={handleChange}
           />
