@@ -1,6 +1,7 @@
 import axios from "axios";
 import { ChangeEvent, useState } from "react";
 import { fetchBusStops } from "../services/busStopService";
+import validateInput from "../services/validationService";
 
 interface SearchBarProps {
   onSearch: (searchValue: string) => Promise<void>;
@@ -8,9 +9,15 @@ interface SearchBarProps {
 
 function SearchBar({ onSearch }: SearchBarProps) {
   const [searchValue, setSearchValue] = useState("");
+  const [errorMessage, setErrorMessage] = useState("");
 
   const handleClick = async () => {
-    await onSearch(searchValue);
+    if (validateInput(searchValue)) {
+      await onSearch(searchValue);
+      setErrorMessage("");
+    } else {
+      setErrorMessage("Invalid input. Please enter a 4-digit bus stop number.");
+    }
   };
 
   const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
@@ -38,6 +45,7 @@ function SearchBar({ onSearch }: SearchBarProps) {
             </button>
           </span>
         </div>
+        {errorMessage && <div className="text-danger mt-2">{errorMessage}</div>}
       </div>
     </div>
   );

@@ -69,10 +69,8 @@ router.get("/bus-stop/:stopId", async (req, res) => {
     // Send response back to client with the predictions including the time difference
     res.json(predictionsWithTimeDifference);
   } catch (error) {
-    console.error("Error fetching bus stop data:", error);
-    res
-      .status(500)
-      .json({ error: "An error occurred while fetching bus stop data" });
+    //console.error("Error fetching bus stop data:", error);
+    res.status(404).json({ error: "Stop not found" });
   }
 });
 
