@@ -1,7 +1,8 @@
 interface BusStop {
   busNumber: string;
   estimatedArrivalTime: string | null;
-  timeDifference: number | null;
+  timeDifference: string | null;
+  tripID: string | null;
 }
 
 interface Props {
@@ -15,9 +16,9 @@ function ListGroup({ items, heading }: Props) {
     <ul className="list-group">
       {message}
       {items.map((item) => (
-        <li className="list-group-item" key={item.busNumber}>
+        <li className="list-group-item" key={item.tripID}>
           <strong>Bus Number:</strong> {item.busNumber} &nbsp;&nbsp;&nbsp;&nbsp;
-          <strong>Time to Arrival:</strong> {item.timeDifference} minutes
+          <strong>Time to Arrival:</strong> {item.timeDifference}
         </li>
       ))}
     </ul>

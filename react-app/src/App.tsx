@@ -6,7 +6,8 @@ import ListGroup from "./components/ListGroup";
 interface BusStop {
   busNumber: string;
   estimatedArrivalTime: string | null;
-  timeDifference: number | null;
+  timeDifference: string | null;
+  tripID: string | null;
 }
 
 function App() {
@@ -17,7 +18,6 @@ function App() {
     try {
       const response: any = await fetchBusStops(searchValue); // Explicitly declare response type as any
       if (response) {
-        // Check if response and response.data exist
         setBusStops(response);
         setKey((prevKey) => prevKey + 1);
       } else {
@@ -27,10 +27,6 @@ function App() {
       console.error("Error retrieving bus stop information:", error);
     }
   };
-
-  useEffect(() => {
-    console.log(busStops);
-  }, [busStops]); // Log busStops whenever it changes
 
   return (
     <div className="d-flex justify-content-center align-items-center vh-150">
