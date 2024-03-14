@@ -6,7 +6,7 @@ const { DateTime } = require("luxon");
 router.get("/bus-stop/:stopId", async (req, res) => {
   try {
     const stopId = req.params.stopId;
-    const apiKey = "vPzWzE9fCr7ca9TvoJXt8REMhHcHOSw2EQRq6Zua"; // Replace with your actual Metlink API key
+    const apiKey = "vPzWzE9fCr7ca9TvoJXt8REMhHcHOSw2EQRq6Zua"; 
 
     // Make GET request to Metlink API
     const response = await axios.get(
@@ -36,14 +36,16 @@ router.get("/bus-stop/:stopId", async (req, res) => {
           : DateTime.fromISO(prediction.departure.aimed, {
               zone: "Pacific/Auckland",
             });
-        console.log("Bus ID: ", prediction.service_id);
-        console.log("Estimated Arrival Time:", estimatedArrivalTime.toISO());
-        console.log("Current Time:", currentTime.toISO());
+
+        var date = new Date(estimatedArrivalTime);
+        var formattedTime = date.toLocaleString("en-US", {
+          hour: "numeric",
+          minute: "2-digit",
+          hour12: true,
+        });
+      
         const timeDifferenceMilliseconds = estimatedArrivalTime - currentTime;
-        console.log(
-          "Time Difference (Milliseconds):",
-          timeDifferenceMilliseconds
-        );
+       
         let timeDifference;
         if (timeDifferenceMilliseconds >= 0) {
           const timeDifferenceMinutes = Math.ceil(
@@ -51,7 +53,7 @@ router.get("/bus-stop/:stopId", async (req, res) => {
           );
           timeDifference =
             timeDifferenceMinutes >= 60
-              ? `${Math.floor(timeDifferenceMinutes / 60)} hours`
+              ? formattedTime
               : `${timeDifferenceMinutes} minutes`;
         } else {
           timeDifference = "Due";
