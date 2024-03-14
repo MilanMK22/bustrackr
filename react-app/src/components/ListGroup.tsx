@@ -16,7 +16,7 @@ function ListGroup({ items, heading }: Props) {
       {items.map((item) => (
         <li className="list-group-item" key={item.tripID}>
           <strong>Bus Number:</strong> {item.busNumber} &nbsp;&nbsp;&nbsp;&nbsp;
-          <strong>Time to Arrival:</strong> {item.timeDifference}
+          <strong>Estimated Arrival:</strong> {item.timeDifference}
         </li>
       ))}
     </ul>
