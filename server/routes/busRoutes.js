@@ -6,7 +6,7 @@ const { DateTime } = require("luxon");
 router.get("/bus-stop/:stopId", async (req, res) => {
   try {
     const stopId = req.params.stopId;
-    const apiKey = "vPzWzE9fCr7ca9TvoJXt8REMhHcHOSw2EQRq6Zua"; 
+    const apiKey = "vPzWzE9fCr7ca9TvoJXt8REMhHcHOSw2EQRq6Zua";
 
     // Make GET request to Metlink API
     const response = await axios.get(
@@ -37,15 +37,16 @@ router.get("/bus-stop/:stopId", async (req, res) => {
               zone: "Pacific/Auckland",
             });
 
-        var date = new Date(estimatedArrivalTime);
-        var formattedTime = date.toLocaleString("en-US", {
+        const formattedTime = DateTime.fromISO(estimatedArrivalTime, {
+          zone: "Pacific/Auckland",
+        }).toLocaleString({
           hour: "numeric",
           minute: "2-digit",
           hour12: true,
         });
-      
+
         const timeDifferenceMilliseconds = estimatedArrivalTime - currentTime;
-       
+
         let timeDifference;
         if (timeDifferenceMilliseconds >= 0) {
           const timeDifferenceMinutes = Math.ceil(
