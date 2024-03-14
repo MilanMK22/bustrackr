@@ -26,14 +26,17 @@ function App() {
         console.error("Invalid response format:", response);
       }
     } catch (error) {
-      setError("bus stop not found"); // Set error state
+      setBusStops([]);
+      setError("Bus stop not found, please enter a valid stop"); // Set error state
     }
   };
 
   return (
     <div className="d-flex justify-content-center align-items-center vh-150">
       <div>
-        <h1 className="text-center mb-4">BusTrackr</h1>
+        <h1 className="text-center mb-4 text-primary font-weight-bold">
+          BusTrackr
+        </h1>
         <SearchBar onSearch={handleSearch}></SearchBar>
         {error && <div>Error: {error}</div>}
         <ListGroup key={key} items={busStops} heading="buses"></ListGroup>
