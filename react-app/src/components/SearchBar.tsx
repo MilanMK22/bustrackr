@@ -140,7 +140,7 @@ function SearchBar({ onSearch }: SearchBarProps) {
             style={{ maxHeight: "150px", overflowY: "auto" }}
           >
             <div className="list-group">
-              {autocompleteSuggestions.slice(0, 6).map((suggestion) => (
+              {autocompleteSuggestions.map((suggestion) => (
                 <button
                   key={suggestion}
                   type="button"
