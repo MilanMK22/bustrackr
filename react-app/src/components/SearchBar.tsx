@@ -135,17 +135,18 @@ function SearchBar({ onSearch }: SearchBarProps) {
           </Modal.Footer>
         </Modal>
         {autocompleteSuggestions.length > 0 && (
-          <ul className="list-group mt-2">
+          <div className="list-group mt-2">
             {autocompleteSuggestions.map((suggestion) => (
-              <li
+              <button
                 key={suggestion}
-                className="list-group-item"
+                type="button"
+                className="list-group-item list-group-item-action"
                 onClick={() => handleAutocompleteSelection(suggestion)}
               >
                 {suggestion}
-              </li>
+              </button>
             ))}
-          </ul>
+          </div>
         )}
       </div>
     </div>
