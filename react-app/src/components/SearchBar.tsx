@@ -1,10 +1,11 @@
 import axios from "axios";
-import iLogo from "../assets/info-circle-fill.svg";
 import { ChangeEvent, useState } from "react";
-import { fetchBusStops } from "../services/busStopService";
 import Modal from "react-bootstrap/Modal";
 import validateInput from "../services/validationService";
 import Button from "react-bootstrap/Button";
+
+// Import the "i" logo SVG file
+import iLogo from "../assets/info-circle-fill.svg";
 
 interface SearchBarProps {
   onSearch: (searchValue: string) => Promise<void>;
@@ -15,6 +16,7 @@ function SearchBar({ onSearch }: SearchBarProps) {
   const [errorMessage, setErrorMessage] = useState("");
   const [showModal, setShowModal] = useState(false);
 
+  // Function to handle search button click
   const handleClick = async () => {
     if (validateInput(searchValue)) {
       await onSearch(searchValue);
@@ -24,6 +26,7 @@ function SearchBar({ onSearch }: SearchBarProps) {
     }
   };
 
+  // Function to handle Enter key press in the input field
   const handleKeyPress = async (
     event: React.KeyboardEvent<HTMLInputElement>
   ) => {
@@ -32,14 +35,17 @@ function SearchBar({ onSearch }: SearchBarProps) {
     }
   };
 
+  // Function to handle input field value change
   const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
     setSearchValue(event.target.value);
   };
 
+  // Function to handle click on the info button
   const handleInfoClick = () => {
     setShowModal(true);
   };
 
+  // Function to close the modal
   const handleCloseModal = () => {
     setShowModal(false);
   };
@@ -48,6 +54,7 @@ function SearchBar({ onSearch }: SearchBarProps) {
     <div className="row justify-content-center mb-4">
       <div className="col-lg-10">
         <div className="input-group">
+          {/* Info button with "i" logo */}
           <button
             className="btn btn-default"
             onClick={handleInfoClick}
@@ -55,6 +62,7 @@ function SearchBar({ onSearch }: SearchBarProps) {
           >
             <img src={iLogo} alt="i Logo" width="20" height="20" />
           </button>
+          {/* Input field for bus stop number */}
           <input
             type="text"
             className="form-control"
@@ -63,6 +71,7 @@ function SearchBar({ onSearch }: SearchBarProps) {
             onChange={handleChange}
             onKeyPress={handleKeyPress}
           />
+          {/* Go button */}
           <span className="input-group-btn">
             <button
               className="btn btn-default"
@@ -73,8 +82,10 @@ function SearchBar({ onSearch }: SearchBarProps) {
             </button>
           </span>
         </div>
+        {/* Error message display */}
         {errorMessage && <div className="text-danger mt-2">{errorMessage}</div>}
 
+        {/* Modal for information */}
         <Modal show={showModal} onHide={handleCloseModal}>
           <Modal.Header closeButton>
             <Modal.Title>Information</Modal.Title>
@@ -84,6 +95,7 @@ function SearchBar({ onSearch }: SearchBarProps) {
             the specific bus stop you're looking for.
           </Modal.Body>
           <Modal.Footer>
+            {/* Close button in the modal */}
             <Button variant="secondary" onClick={handleCloseModal}>
               Close
             </Button>
