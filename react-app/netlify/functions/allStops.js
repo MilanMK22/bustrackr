@@ -13,6 +13,7 @@ async function fetchAllStopIds(apiKey) {
       }
     );
     const stopIds = response.data.map((stop) => stop.stop_id);
+    console.log(stopIds)
     return stopIds;
   } catch (error) {
     console.error("Error fetching all stop IDs:", error);
