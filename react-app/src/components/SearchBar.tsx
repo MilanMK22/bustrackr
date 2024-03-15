@@ -25,6 +25,7 @@ function SearchBar({ onSearch }: SearchBarProps) {
     async function fetchAllStops() {
       try {
         const stopIds = await fetchAllStopIds(); // Fetch all stop IDs
+        console.log("stops in search", stopIds)
         setAllStopIds(stopIds);
       } catch (error) {
         console.error("Error fetching all stops:", error);

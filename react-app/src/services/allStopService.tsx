@@ -6,6 +6,7 @@ export async function fetchAllStopIds(): Promise<string[]> {
       "https://bus-trackr.netlify.app/.netlify/functions/allStops"
     );
     const stopIds: string[] = response.data.map((stop: any) => stop.stop_id);
+    console.log(stopIds);
     return stopIds;
   } catch (error) {
     console.error("Error fetching all stop IDs:", error);
