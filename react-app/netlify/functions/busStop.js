@@ -59,6 +59,14 @@ exports.handler = async (event, context) => {
     // Fetch bus predictions using the provided stopId and API key
     const departures = await fetchBusPredictions(stopId, apiKey);
 
+    if (departures.length === 0) {
+      // If there are no scheduled trips, return a custom message
+      return {
+        statusCode: 200,
+        body: JSON.stringify([{ message: "No scheduled trips" }]),
+      };
+    }
+
     // Map over the departures to calculate time differences and format the predictions
     const predictionsWithTimeDifference = departures
       .slice(0, 5)
