@@ -20,6 +20,14 @@ function SearchBar({ onSearch }: SearchBarProps) {
     }
   };
 
+  const handleKeyPress = async (
+    event: React.KeyboardEvent<HTMLInputElement>
+  ) => {
+    if (event.key === "Enter") {
+      await handleClick();
+    }
+  };
+
   const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
     setSearchValue(event.target.value);
   };
@@ -34,6 +42,7 @@ function SearchBar({ onSearch }: SearchBarProps) {
             placeholder="Bus Stop Number..."
             value={searchValue}
             onChange={handleChange}
+            onKeyPress={handleKeyPress}
           />
           <span className="input-group-btn">
             <button
