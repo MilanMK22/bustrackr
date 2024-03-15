@@ -135,16 +135,18 @@ function SearchBar({ onSearch }: SearchBarProps) {
           </Modal.Footer>
         </Modal>
         {autocompleteSuggestions.length > 0 && (
-          <div className="list-group mt-2">
-            {autocompleteSuggestions.map((suggestion) => (
-              <button
-                key={suggestion}
-                type="button"
-                className="list-group-item list-group-item-action"
+          <div
+            className="autocomplete-suggestions mt-2"
+            style={{ maxHeight: "150px", overflowY: "auto" }}
+          >
+            {autocompleteSuggestions.slice(0, 5).map((suggestion, index) => (
+              <div
+                key={index}
+                className="suggestion-item"
                 onClick={() => handleAutocompleteSelection(suggestion)}
               >
                 {suggestion}
-              </button>
+              </div>
             ))}
           </div>
         )}
