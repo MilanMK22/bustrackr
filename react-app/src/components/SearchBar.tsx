@@ -139,15 +139,18 @@ function SearchBar({ onSearch }: SearchBarProps) {
             className="autocomplete-suggestions mt-2"
             style={{ maxHeight: "150px", overflowY: "auto" }}
           >
-            {autocompleteSuggestions.slice(0, 5).map((suggestion, index) => (
-              <div
-                key={index}
-                className="suggestion-item"
-                onClick={() => handleAutocompleteSelection(suggestion)}
-              >
-                {suggestion}
-              </div>
-            ))}
+            <div className="list-group">
+              {autocompleteSuggestions.slice(0, 6).map((suggestion) => (
+                <button
+                  key={suggestion}
+                  type="button"
+                  className="list-group-item list-group-item-action"
+                  onClick={() => handleAutocompleteSelection(suggestion)}
+                >
+                  {suggestion}
+                </button>
+              ))}
+            </div>
           </div>
         )}
       </div>
