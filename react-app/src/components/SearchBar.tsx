@@ -37,8 +37,9 @@ function SearchBar({ onSearch }: SearchBarProps) {
 
   const handleAutocomplete = (value: string) => {
     const filteredSuggestions = allStopIds.filter((stopId) =>
-      stopId.toLowerCase().includes(value.toLowerCase())
+      stopId.startsWith(value)
     );
+    console.log("Filtered suggestions:", filteredSuggestions); // Add this line
     setAutocompleteSuggestions(filteredSuggestions);
   };
 
@@ -64,6 +65,7 @@ function SearchBar({ onSearch }: SearchBarProps) {
   // Function to handle input field value change
   const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
     setSearchValue(event.target.value);
+    handleAutocomplete(event.target.value);
   };
 
   const handleAutocompleteSelection = (value: string) => {
