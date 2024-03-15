@@ -1,9 +1,9 @@
 import axios from "axios";
-import { ChangeEvent, useState } from "react";
+import { ChangeEvent, useEffect, useState } from "react";
 import Modal from "react-bootstrap/Modal";
 import validateInput from "../services/validationService";
 import Button from "react-bootstrap/Button";
-
+import { fetchAllStopIds } from "../services/allStopService";
 // Import the "i" logo SVG file
 import iLogo from "../assets/info-circle-fill.svg";
 
@@ -15,6 +15,31 @@ function SearchBar({ onSearch }: SearchBarProps) {
   const [searchValue, setSearchValue] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
   const [showModal, setShowModal] = useState(false);
+  const [allStopIds, setAllStopIds] = useState<string[]>([]);
+  const [autocompleteSuggestions, setAutocompleteSuggestions] = useState<
+    string[]
+  >([]);
+
+
+  useEffect(() => {
+    async function fetchAllStops() {
+      try {
+        const stopIds = await fetchAllStopIds(); // Fetch all stop IDs
+        setAllStopIds(stopIds);
+      } catch (error) {
+        console.error("Error fetching all stops:", error);
+      }
+    }
+
+    fetchAllStops();
+  }, []);
+
+  const handleAutocomplete = (value: string) => {
+    const filteredSuggestions = allStopIds.filter((stopId) =>
+      stopId.toLowerCase().includes(value.toLowerCase())
+    );
+    setAutocompleteSuggestions(filteredSuggestions);
+  };
 
   // Function to handle search button click
   const handleClick = async () => {
@@ -38,6 +63,11 @@ function SearchBar({ onSearch }: SearchBarProps) {
   // Function to handle input field value change
   const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
     setSearchValue(event.target.value);
+  };
+
+  const handleAutocompleteSelection = (value: string) => {
+    setSearchValue(value);
+    setAutocompleteSuggestions([]);
   };
 
   // Function to handle click on the info button
@@ -101,6 +131,19 @@ function SearchBar({ onSearch }: SearchBarProps) {
             </Button>
           </Modal.Footer>
         </Modal>
+        {autocompleteSuggestions.length > 0 && (
+          <ul className="list-group mt-2">
+            {autocompleteSuggestions.map((suggestion) => (
+              <li
+                key={suggestion}
+                className="list-group-item"
+                onClick={() => handleAutocompleteSelection(suggestion)}
+              >
+                {suggestion}
+              </li>
+            ))}
+          </ul>
+        )}
       </div>
     </div>
   );
