@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import {useState } from "react";
 import SearchBar from "./components/SearchBar";
 import { fetchBusStops } from "./services/busStopService";
 import ListGroup from "./components/ListGroup";
@@ -48,7 +48,7 @@ function App() {
         {error && <div>Error: {error}</div>}
 
         {/* Display list of bus stops */}
-        <ListGroup key={key} items={busStops} heading="buses"></ListGroup>
+        <ListGroup key={key} items={busStops}></ListGroup>
       </div>
     </div>
   );

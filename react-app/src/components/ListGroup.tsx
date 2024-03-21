@@ -7,10 +7,9 @@ interface BusStop {
 
 interface Props {
   items: BusStop[];
-  heading: string;
 }
 
-function ListGroup({ items, heading }: Props) {
+function ListGroup({ items }: Props) {
   return (
     <ul className="list-group">
       {items.map((item) => (
