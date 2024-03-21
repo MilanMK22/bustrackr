@@ -3,6 +3,8 @@ var cors = require("cors");
 var createError = require("http-errors");
 var busRoutes = require("./routes/busRoutes");
 
+// No longer used as moved to serverless functions *************
+
 var app = express();
 
 // Mount the busRoutes middleware

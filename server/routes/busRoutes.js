@@ -3,6 +3,8 @@ const axios = require("axios");
 const router = express.Router();
 const { DateTime } = require("luxon");
 
+// No longer used as moved to serverless functions *************
+
 router.get("/bus-stop/:stopId", async (req, res) => {
   try {
     const stopId = req.params.stopId;
