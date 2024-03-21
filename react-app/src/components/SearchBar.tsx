@@ -38,7 +38,6 @@ function SearchBar({ onSearch }: SearchBarProps) {
     const filteredSuggestions = allStopIds.filter((stopId) =>
       stopId.startsWith(value)
     );
-    console.log("Filtered suggestions:", filteredSuggestions); // Add this line
     setAutocompleteSuggestions(filteredSuggestions);
   };
 
@@ -53,7 +52,7 @@ function SearchBar({ onSearch }: SearchBarProps) {
   };
 
   // Function to handle Enter key press in the input field
-  const handleKeyPress = async (
+  const handleKeyDown = async (
     event: React.KeyboardEvent<HTMLInputElement>
   ) => {
     if (event.key === "Enter") {
@@ -101,7 +100,7 @@ function SearchBar({ onSearch }: SearchBarProps) {
             placeholder="Bus Stop Number..."
             value={searchValue}
             onChange={handleChange}
-            onKeyPress={handleKeyPress}
+            onKeyDown={handleKeyDown}
           />
           {/* Go button */}
           <span className="input-group-btn">
@@ -127,7 +126,6 @@ function SearchBar({ onSearch }: SearchBarProps) {
             the specific bus stop you're looking for.
           </Modal.Body>
           <Modal.Footer>
-            {/* Close button in the modal */}
             <Button variant="secondary" onClick={handleCloseModal}>
               Close
             </Button>
